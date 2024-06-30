@@ -1,0 +1,41 @@
+<style>
+    *{
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    a{
+        text-decoration:none;
+        font-size:20px;
+        display:flex;
+        padding:20px;
+        margin:20px;
+        border:none;
+        border-radius:5px;
+        color:white;
+        height:60px;
+        {% comment %} background-color:#0077B6; {% endcomment %}
+    }
+    nav{
+        
+        background-color:#0077B6;
+        width:200px;
+    }
+    nav ,a{
+        padding:10px;
+        gap:10px;
+    }
+</style>
+
+
+<div>
+    <nav>
+        <a>Home</a>
+        <a href ="/admin">admin</a>
+        <a href ="{% url 'get_products'%}">Products</a>
+        <a href ="{%url 'get_categories'%}">Categories</a>
+        <a href ="{%url 'get_warehouses'%}">Warehouses</a>
+        <a href ="{%url 'get_orders'%}">Orders</a>
+        <a href ="{%url 'get_suppliers'%}">Suppliers</a>
+        {% comment %} <a href ="{%url 'get_warehouse_inventories'%}">Warehouses Inventories</a> {% endcomment %}
+
+    </nav>
+</div>
