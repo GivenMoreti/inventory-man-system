@@ -40,17 +40,37 @@ def generate_receipt(request, order_id):
     p = canvas.Canvas(buffer, pagesize=letter)
     width, height = letter
 
-    # Draw things on the PDF. Here's where the PDF generation happens.
-    # See the ReportLab documentation for the full list of functionality.
-    p.setFont("Helvetica", 12)
-    p.drawString(100, height - 100, f"Receipt for Order: {order.order_number}")
-    p.drawString(100, height - 120, f"Date: {order.order_date}")
-    p.drawString(100, height - 140, f"Supplier: {order.supplier.name}")
+    # Set up styles
+    p.setFont("Helvetica-Bold", 16)
+    leading = 20  # Line spacing
 
-    y_position = height - 180
+    # Header
+    p.drawString(100, height - 80, "Receipt for Order")
+    p.setFont("Helvetica", 12)
+    p.drawString(100, height - 100, "-" * 60)
+    p.drawString(100, height - 120, f"Order Number: {order.order_number}")
+    p.drawString(100, height - 140, f"Order Date: {order.order_date}")
+    p.drawString(100, height - 160, f"Supplier: {order.supplier.name}")
+    p.drawString(100, height - 180, "-" * 60)
+
+    # Products section
+    y_position = height - 220
+    p.setFont("Helvetica-Bold", 14)
+    p.drawString(100, y_position, "Products:")
+    p.setFont("Helvetica", 12)
+    y_position -= leading
+
     for product in order.products.all():
-        p.drawString(100, y_position, f"Product: {product.name} - Quantity: {product.quantity}")
-        y_position -= 20
+        p.drawString(100, y_position, f"Name: {product.name}")
+        y_position -= leading
+        p.drawString(100, y_position, f"Quantity: {product.quantity}")
+        y_position -= leading
+        p.drawString(100, y_position, f"Code: {product.product_code}")
+        y_position -= leading
+        p.drawString(100, y_position, f"Price: R {product.price:.2f}")
+        y_position -= leading
+        p.drawString(100, y_position, "-" * 60)
+        y_position -= leading * 2
 
     # Close the PDF object cleanly, and we're done.
     p.showPage()
