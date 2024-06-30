@@ -4,5 +4,6 @@ from .models import Supplier
 
 def get_suppliers(request):
     suppliers = Supplier.objects.all()
-    context = {"suppliers":suppliers}
+    supplier_count = Supplier.objects.count()
+    context = {"suppliers":suppliers,"supplier_count":supplier_count}
     return render(request,"supplier/suppliers.html",context)

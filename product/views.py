@@ -8,8 +8,9 @@ def get_products(request):
     products = Product.objects.all()
     paginator = Paginator(products, 5)  # Show 10 products per page
     page_number = request.GET.get('page')
+    product_count = Product.objects.count()
     page_obj = paginator.get_page(page_number)
-    return render(request, 'product/products.html', {'page_obj': page_obj})
+    return render(request, 'product/products.html', {'page_obj': page_obj,"product_count":product_count})
 
 
 

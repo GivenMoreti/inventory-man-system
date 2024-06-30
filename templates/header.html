@@ -11,7 +11,7 @@
         border:none;
         border-radius:5px;
         color:white;
-        height:60px;
+        height:84px;
         {% comment %} background-color:#0077B6; {% endcomment %}
     }
     nav{
@@ -23,6 +23,16 @@
         padding:10px;
         gap:10px;
     }
+    #item-count{
+      
+        color:white;
+        width:30px;
+        height:30px;
+        border-radius:5px;
+        text-align:center;
+       
+       
+    }
 </style>
 
 
@@ -30,11 +40,11 @@
     <nav>
         <a>Home</a>
         <a href ="/admin">admin</a>
-        <a href ="{% url 'get_products'%}">Products</a>
-        <a href ="{%url 'get_categories'%}">Categories</a>
-        <a href ="{%url 'get_warehouses'%}">Warehouses</a>
-        <a href ="{%url 'get_orders'%}">Orders</a>
-        <a href ="{%url 'get_suppliers'%}">Suppliers</a>
+        <a href ="{% url 'get_products'%}">Products <span id="item-count">{{product_count}}</span> </a>
+        <a href ="{%url 'get_categories'%}">Categories<span id="item-count">{{cat_count}}</span></a>
+        <a href ="{%url 'get_warehouses'%}">Warehouses <span id="item-count">{{warehouse_count}}</span></a>
+        <a href ="{%url 'get_orders'%}">Orders <span id="item-count">{{order_count}}</span></a>
+        <a href ="{%url 'get_suppliers'%}">Suppliers <span id="item-count">{{supplier_count}}</span></a>
         {% comment %} <a href ="{%url 'get_warehouse_inventories'%}">Warehouses Inventories</a> {% endcomment %}
 
     </nav>
