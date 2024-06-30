@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     'inventory_transaction',
     'product',
     'warehouse',
-    'orderitem',
     'warehouse_inventory',
+ 
 
 ]
 

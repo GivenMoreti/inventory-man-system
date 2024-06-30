@@ -8,8 +8,8 @@ urlpatterns = [
     path("categories/",include("category.urls")),
     path("warehouses/",include("warehouse.urls")),
     path("orders/",include("order.urls")),
-    path("orderitems/",include("orderitem.urls")),
     path("suppliers/",include("supplier.urls")),
     path("inventory_transaction/",include("inventory_transaction.urls")),
+ 
 
 ]

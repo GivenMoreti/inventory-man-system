@@ -1,6 +1,42 @@
 {% extends "base.html" %}
 
 {%block content%}
-<h1>hello orders</h1>
 
+<div class="container">
+    <div class="col-12">
+        <a href="{% url 'create_order' %}"  class="btn btn-secondary">Create Order</a>
+    </div>
+
+<table class="table table-striped-columns">
+    <thead>
+      <tr>
+        <td>Order number</td>
+        <td>Date</td>
+        <td>Products</td>
+        <td>Supplier</td>  
+      </tr>
+    </thead>
+    <tbody>
+        {%for order in orders%}
+      <tr>
+        <td>{{order.order_number}}</td>
+        <td>{{order.order_date}}</td>
+        <td>
+            {% for product in order.products.all %}
+                {{ product.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </td>
+        <td>{{order.supplier}}</td>
+        <td>
+          <a href="{% url 'generate_receipt' order.id %}" class="btn btn-success">Download Receipt</a>
+        </td>
+      
+      </tr>
+     {%endfor%}
+
+     
+  
+    </tbody>
+  </table>
+</div>
 {%endblock%}
